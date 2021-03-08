@@ -12,15 +12,15 @@ class JobService
     }
 
     public function getAllJobs(){
-        return $jobs = $this->dao->db->query('SELECT id, reference, title, ' .
-            'description, url, company_name, ' .
-            'publication FROM job')->fetchAll(PDO::FETCH_ASSOC);
+        return $jobs = $this->dao->db->query('SELECT id, reference, title,
+            description, url, company_name,
+            publication FROM job')->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
     public function insert(){
 
-        // 
+        //
 
 
     }
