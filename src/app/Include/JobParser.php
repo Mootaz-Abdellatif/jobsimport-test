@@ -1,9 +1,9 @@
 <?php
 namespace App\Utils;
 
-use Jobs;
+use Job;
 
-class JobsImporter
+class JobParser
 {
 
     // jobteaser.xml import
@@ -15,20 +15,20 @@ class JobsImporter
         $xml = simplexml_load_file($filename);
         foreach ($xml->offer as $item)
         {
-            $models[] = new Jobs(
-                addslashes($item->link),
-                addslashes($item->title),
-                addslashes($item->description),
-                addslashes($item->reference),
-                addslashes($item->publisheddate),
-                addslashes($item->companyname)
+            $models[] = new Job(
+                $item->link,
+                $item->title,
+                $item->description,
+                $item->reference,
+                $item->publisheddate,
+                $item->companyname
             );
         }
         return ($models);
     }
 
     // regionjob.xml import
-    function importFromJobteaserXML($filename)
+    function importFromRegionsjobXML($filename)
     {
         $models = array();
         if (!file_exists($filename))
@@ -36,13 +36,13 @@ class JobsImporter
         $xml = simplexml_load_file($filename);
         foreach ($xml->offer as $item)
         {
-            $models[] = new Jobs(
-                addslashes($item->link),
-                addslashes($item->title),
-                addslashes($item->description),
-                addslashes($item->reference),
-                addslashes($item->publisheddate),
-                addslashes($item->companyname)
+            $models[] = new Job(
+                $item->link,
+                $item->title,
+                $item->description,
+                $item->reference,
+                $item->publisheddate,
+                $item->companyname
             );
         }
         return ($models);

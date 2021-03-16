@@ -26,6 +26,7 @@ class PDODataBase
     }
 
     public static function getInstance(){
+
         self::$instance= new PDODataBase();
         return self::$instance;
     }

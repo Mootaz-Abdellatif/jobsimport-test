@@ -1,7 +1,7 @@
 <?php
 
 
-class Jobs
+class Job
 {
     private	$link;
     private	$title;

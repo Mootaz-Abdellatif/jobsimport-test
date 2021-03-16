@@ -10,7 +10,6 @@ namespace App;
 
 use App\Utils;
 use JobsImporter;
-use JobsLister;
 use App\Controller\JobController;
 
 define('RESSOURCES_DIR', __DIR__ . '/../resources/');
@@ -23,10 +22,10 @@ spl_autoload_register(function (string $classname) {
 
 class app{
 
-    private $Jobscontroller;
+    private $JobImporter;
 
     public function __construct(){
-        $this->Jobscontroller["jobs"] = new JobController();
+        $this->JobImporter["jobs"] = new JobController();
     }
 
     public function import(){
@@ -35,11 +34,11 @@ class app{
 
 
         /* import jobs */
-        $count = $this->Jobscontroller["jobs"]->import(RESSOURCES_DIR);
+        $count = $this->JobImporter["jobs"]->import(RESSOURCES_DIR);
         echo sprintf("> %d jobs imported.\n", $count);
 
         /* list jobs */
-        $jobs = $this->Jobscontroller["jobs"]->fetch();
+        $jobs = $this->JobImporter["jobs"]->fetch();
         echo sprintf("> all jobs (%d):\n", count($jobs));
         foreach ($jobs as $job) {
             echo sprintf(" %d: %s - %s - %s\n", $job['id'], $job['reference'], $job['title'], $job['publication']);
